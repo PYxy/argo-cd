@@ -7,6 +7,8 @@ pipeline {
                 echo 'Building..'
                 //git(changelog: false, credentialsId: 'github-user-pwd', poll: false, url: 'https://github.com/PYxy/argo-cd.git')
                 sh '''ls -al'''
+                sh '''docker ps'''
+                sh '''kubectl get ns'''
                 echo "拉取完成"
             }
         }
