@@ -2,10 +2,11 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('拉取代码') {
             steps {
                 echo 'Building..'
-                git(url: 'https://github.com/PYxy/argo-cd.git', credentialsId: 'github-user-pwd')
+                git(changelog: false, credentialsId: 'github-user-pwd', poll: false, url: 'https://github.com/PYxy/argo-cd.git')
+                echo "拉取完成"
             }
         }
         stage('Test') {
