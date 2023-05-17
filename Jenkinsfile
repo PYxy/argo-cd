@@ -17,6 +17,7 @@ pipeline {
 docker push 120.132.118.90/harbor-test/nginx-ljy:1.0'''
             }
         }
+        }
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
