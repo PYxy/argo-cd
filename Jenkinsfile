@@ -1,7 +1,23 @@
 pipeline {
     agent any
-
+    parameters {
+    string(name: 'BRANCH_NAME', defaultValue: 'master', description: '请选择要发布的分支')
+    string(name: 'TAG_NAME', defaultValue: 'snapshot', description: '标签名称，必须以 v 开头，例如：v1、v1.0.0')
+    }
+    environment { //配置全局变量
+    REGISTRY = '192.168.113.122:8858'
+    DOCKER_CREDENTIAL_ID = 'harbor-user-pass' //harbor 的用户名密码 在jenkins credentials 里面配置的密钥
+    GIT_REPO_URL = '192.168.113.121:28080'    //gitlab 的端口密码
+    GIT_CREDENTIAL_ID = 'gitlab-user-pass'    //gitlab 的用户名密码 在jenkins credentials 里面配置的密钥
+    KUBECONFIG_CREDENTIAL_ID = 'kubeconfig-id' 
+    DOCKERHUB_NAMESPACE = 'docker_username' 
+    GITHUB_ACCOUNT = 'root'
+    APP_NAME = 'k8s-cicd-demo'
+  }
     stages {
+        when {
+        branch 'master'  // 只有主分 才做
+        }
         stage('拉取代码') {
             steps {
                 echo 'Building..'
@@ -13,6 +29,7 @@ pipeline {
             }
         }
         stage('Test') {
+            input(message: 'deploy to production?', submitter: '')
             steps {
 //                  sh 'docker tag nginx:v1  120.132.118.90/harbor-test/nginx-ljy:1.0'
 //           withCredentials([usernamePassword(credentialsId : 'harbor-user-pwd' ,passwordVariable : 'DOCKER_PASSWORD' ,usernameVariable : 'DOCKER_USERNAME' ,)]) {
