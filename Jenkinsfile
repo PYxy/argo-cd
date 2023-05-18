@@ -21,6 +21,7 @@ pipeline {
                 branch 'master'  // 只有主分 才做
             }
             steps {
+                echo '打印参数:REGISTRY  $REGISTRY'
                 echo 'Building..'
                 git branch: 'develop', changelog: false, credentialsId: 'github-user-pwd', poll: false, url: 'https://github.com/PYxy/argo-cd.git'
                 sh '''ls -al'''
@@ -32,7 +33,7 @@ pipeline {
         stage('Test') {
             
             steps {
-                input(message: 'deploy to production?', submitter: '')
+                input(message: 'deploy to production?', submitter: '') //用于终止 或者继续往下走
 //                  sh 'docker tag nginx:v1  120.132.118.90/harbor-test/nginx-ljy:1.0'
 //           withCredentials([usernamePassword(credentialsId : 'harbor-user-pwd' ,passwordVariable : 'DOCKER_PASSWORD' ,usernameVariable : 'DOCKER_USERNAME' ,)]) {
 //             sh '''echo "$DOCKER_PASSWORD" | docker login 120.132.118.90 -u "$DOCKER_USERNAME" --password-stdin
