@@ -1,7 +1,7 @@
 pipeline {
     agent any
     parameters {
-    string(name: 'BRANCH_NAME', defaultValue: 'main', description: '请选择要发布的分支')
+    string(name: 'BRANCH_NAME', defaultValue: 'main', description: '请选择要发布的分支1')
     string(name: 'TAG_NAME', defaultValue: 'snapshot', description: '标签名称，必须以 v 开头，例如：v1、v1.0.0')
     }
     environment { //配置全局变量
