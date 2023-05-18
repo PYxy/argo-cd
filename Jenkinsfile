@@ -16,7 +16,7 @@ pipeline {
   }
     stages {
         
-        stage('拉取代码主分支12211') {
+        stage('拉取代码主分支12212221') {
             when {
                 branch 'main'  // 只有主分 才做
             }
