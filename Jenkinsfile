@@ -18,7 +18,7 @@ pipeline {
         
         stage('拉取代码分支') {
             when {
-                branch 'develop'  // 只有主分 才做
+                branch 'master'  // 只有主分 才做
             }
             steps {
                 echo "打印参数(分支):REGISTRY  $REGISTRY"
@@ -34,7 +34,7 @@ pipeline {
         stage('Test') {
             when {
             expression {
-             params.BRANCH_NAME == 'develop'
+             params.BRANCH_NAME == 'master'
              }
 
             }
