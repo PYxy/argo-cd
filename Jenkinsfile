@@ -31,7 +31,12 @@ pipeline {
             }
         }
         stage('Test') {
-            
+            when {
+            expression {
+             params.BRANCH_NAME = 'develop'
+             }
+
+            }
             steps {
                 input(message: 'deploy to production?', submitter: '') //用于终止 或者继续往下走
 //                  sh 'docker tag nginx:v1  120.132.118.90/harbor-test/nginx-ljy:1.0'
