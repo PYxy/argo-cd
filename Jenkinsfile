@@ -23,7 +23,7 @@ pipeline {
             steps {
                 echo "打印参数(分支):REGISTRY  $REGISTRY"
                 echo 'Building..'
-                git changelog: false, credentialsId: 'github-user-pwd', poll: false, url: 'https://github.com/PYxy/argo-cd.git'
+                //git changelog: false, credentialsId: 'github-user-pwd', poll: false, url: 'https://github.com/PYxy/argo-cd.git'
                 sh '''ls -al'''
                 sh '''pwd'''
                 sh '''docker ps'''
