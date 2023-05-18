@@ -33,7 +33,7 @@ pipeline {
         stage('Test') {
             when {
             expression {
-             params.BRANCH_NAME = 'develop'
+             params.BRANCH_NAME == 'develop'
              }
 
             }
