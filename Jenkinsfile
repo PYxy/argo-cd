@@ -19,7 +19,7 @@ pipeline {
 //             sh '''echo "$DOCKER_PASSWORD" | docker login 120.132.118.90 -u "$DOCKER_USERNAME" --password-stdin
 // docker push 120.132.118.90/harbor-test/nginx-ljy:1.0'''
                 echo 'Testing..'
-          }
+          
         }
         }
         stage('Deploy') {
