@@ -15,10 +15,11 @@ pipeline {
     APP_NAME = 'k8s-cicd-demo'
   }
     stages {
-        when {
-        branch 'master'  // 只有主分 才做
-        }
+        
         stage('拉取代码') {
+            when {
+                branch 'master'  // 只有主分 才做
+            }
             steps {
                 echo 'Building..'
                 git branch: 'develop', changelog: false, credentialsId: 'github-user-pwd', poll: false, url: 'https://github.com/PYxy/argo-cd.git'
@@ -29,8 +30,9 @@ pipeline {
             }
         }
         stage('Test') {
-            input(message: 'deploy to production?', submitter: '')
+            
             steps {
+                input(message: 'deploy to production?', submitter: '')
 //                  sh 'docker tag nginx:v1  120.132.118.90/harbor-test/nginx-ljy:1.0'
 //           withCredentials([usernamePassword(credentialsId : 'harbor-user-pwd' ,passwordVariable : 'DOCKER_PASSWORD' ,usernameVariable : 'DOCKER_USERNAME' ,)]) {
 //             sh '''echo "$DOCKER_PASSWORD" | docker login 120.132.118.90 -u "$DOCKER_USERNAME" --password-stdin
