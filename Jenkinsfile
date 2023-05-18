@@ -16,12 +16,12 @@ pipeline {
   }
     stages {
         
-        stage('拉取代码') {
+        stage('拉取代码分支') {
             when {
                 branch 'develop'  // 只有主分 才做
             }
             steps {
-                echo "打印参数:REGISTRY  $REGISTRY"
+                echo "打印参数(分支):REGISTRY  $REGISTRY"
                 echo 'Building..'
                 git changelog: false, credentialsId: 'github-user-pwd', poll: false, url: 'https://github.com/PYxy/argo-cd.git'
                 sh '''ls -al'''
