@@ -1,7 +1,7 @@
 pipeline {
     agent any
     parameters {
-    string(name: 'BRANCH_NAME', defaultValue: 'master', description: '请选择要发布的分支')
+    string(name: 'BRANCH_NAME', defaultValue: 'main', description: '请选择要发布的分支')
     string(name: 'TAG_NAME', defaultValue: 'snapshot', description: '标签名称，必须以 v 开头，例如：v1、v1.0.0')
     }
     environment { //配置全局变量
@@ -18,7 +18,7 @@ pipeline {
         
         stage('拉取代码主分支') {
             when {
-                branch 'master'  // 只有主分 才做
+                branch 'main'  // 只有主分 才做
             }
             steps {
                 echo "打印参数(分支):REGISTRY  $REGISTRY"
@@ -34,7 +34,7 @@ pipeline {
         stage('Test') {
             when {
             expression {
-             params.BRANCH_NAME == 'master'
+             params.BRANCH_NAME == 'main'
              }
 
             }
