@@ -18,12 +18,12 @@ pipeline {
         
         stage('拉取代码') {
             when {
-                branch 'master'  // 只有主分 才做
+                branch 'develop'  // 只有主分 才做
             }
             steps {
                 echo "打印参数:REGISTRY  $REGISTRY"
                 echo 'Building..'
-                git branch: 'delevop', credentialsId: 'github-user-pwd', url: 'https://github.com/PYxy/argo-cd.git'
+                git changelog: false, credentialsId: 'github-user-pwd', poll: false, url: 'https://github.com/PYxy/argo-cd.git'
                 sh '''ls -al'''
                 sh '''pwd'''
                 sh '''docker ps'''
