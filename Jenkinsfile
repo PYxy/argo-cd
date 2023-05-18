@@ -21,7 +21,7 @@ pipeline {
                 branch 'master'  // 只有主分 才做
             }
             steps {
-                echo '打印参数:REGISTRY  $REGISTRY'
+                echo "打印参数:REGISTRY  $REGISTRY"
                 echo 'Building..'
                 git branch: 'develop', changelog: false, credentialsId: 'github-user-pwd', poll: false, url: 'https://github.com/PYxy/argo-cd.git'
                 sh '''ls -al'''
